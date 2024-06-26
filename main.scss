@@ -1,0 +1,88 @@
+//variables
+$font-stack: helvetica, sans-serif;
+$primary-color: #333;
+
+//nesting
+nav {
+  ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  li {
+    display: inline-block;
+  }
+  a {
+    display: block;
+    padding: 6px 12px;
+    text-decoration: none;
+  }
+}
+
+//@import
+//helps to import the content from the other files
+@import "reset";
+
+//@mixin, @include
+@mixin important-text
+{
+  background-color: $primary-color;
+  font-size: 25px;
+}
+
+.danger{
+  @include important-text;
+  color: red;
+}
+
+//@extend
+//helps you to pass css properties from one sector to other
+.button-basic{
+  font-size: large;
+  border: none;
+  padding: 15px;
+  text-align: center;
+  cursor: pointer;
+} 
+.button-repeater
+{
+  @extend .button-basic;
+  background-color: red;
+}
+
+//FUNCTION 
+//string
+@use "sass:string";
+
+@debug string.quote(Helvetica);
+
+//Numeric
+@debug 10+ 20;
+
+//list
+@debug list.append(10px 20px, 30px);
+@debug list.index(1px soid red, 1px );
+@debug list.join(10px 20px, 30px 40px);
+
+//map
+@use "sass:map";
+
+$fonts: (
+  "Helvetica": (
+    "weights": (
+      "regular": 400,
+      "medium": 500,
+      "bold": 700
+    )
+  )
+);
+
+@debug map.has-key($fonts, "Helvetica", "weights", "regular");
+
+//Selector 
+//this are used to check and manipulate the sectors
+@debug selector.append("a", ".disabled");
+
+//color
+@debug adjust-hue(#6b717f, 60deg);
+@debug color.opacity(rgb(210, 225, 221, 0.4));
